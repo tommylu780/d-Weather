@@ -28,8 +28,8 @@
                         <button class=" btn bg-primary text-light" id="search-button"><i class="fa fa-search"></i></button>
                     </div>
                 </div>
-                <!--section for search city history-->
-                <button class=" btn btn-primary" type="button" id="clear-history">Clear history</button>
+                <!-- City history list-->
+                <button class=" btn btn-primary" type="button" id="clear-button">Clear history</button>
                 <ul class="list-group">
 
                 </ul>
@@ -43,6 +43,41 @@
                         <p>Humidity:<span class="current" id="humidity"></span></p>
                         <p>Wind Speed:<span class="current" id="wind-speed"></span></p>
                         <p>UV index:<span class="current bg-danger rounded py-2 px-2 text-white" id="uv-index"></span></p>
+                    </div>
+                </div>
+                <div class="col-sm-12" id="future-weather">
+                    <h3>5-Day Forecast:</h3>
+                    <div class="row">
+                        <div class="col-sm-2 bg-primary text-white forecast p-2">
+                            <p id="f-date0"></p>
+                            <p id="f-img0"></p>
+                            <p>Temp:<span id="f-temp0"></span></p>
+                            <p>Humidity:<span id="f-humidity0"></span></p>
+                        </div>
+                        <div class="col-sm-2 bg-primary text-white forecast p-2">
+                            <p id="f-date1"></p>
+                            <p id="f-img1"></p>
+                            <p>Temp:<span id="f-temp1"></span></p>
+                            <p>Humidity:<span id="f-humidity1"></span></p>
+                        </div>
+                        <div class="col-sm-2 bg-primary text-white forecast p-2">
+                            <p id="f-date2"></p>
+                            <p id="f-img2"></p>
+                            <p>Temp:<span id="f-temp2"></span></p>
+                            <p>Humidity:<span id="f-humidity2"></span></p>
+                        </div>
+                        <div class="col-sm-2 bg-primary text-white forecast p-2">
+                            <p id="f-date3"></p>
+                            <p id="f-img3"></p>
+                            <p>Temp:<span id="f-temp3"></span></p>
+                            <p>Humidity:<span id="f-humidity3"></span></p>
+                        </div>
+                        <div class="col-sm-2 bg-primary text-white forecast p-2">
+                            <p id="f-date4"></p>
+                            <p id="f-img4"></p>
+                            <p>Temp:<span id="f-temp4"></span></p>
+                            <p>Humidity:<span id="f-humidity4"></span></p>
+                        </div>
                     </div>
                 </div>
             </div>
