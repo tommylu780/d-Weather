@@ -47,7 +47,7 @@ function currentWeather(city) {
         // The wind from reponse is default by m/s
         var windS = response.wind.speed;
         var wsKMH = (windS).toFixed(1);
-        $(currentWindS).html(wsKMH * 3.6 + " Km/h");
+        $(currentWindS).html((wsKMH * 3.6).toFixed(1) + " Km/h");
         // Display UV index.
         UVIndex(response.coord.lon, response.coord.lat);
         forecast(response.id);
@@ -142,7 +142,17 @@ function clearData(event) {
     localStorage.removeItem("cityname");
     document.location.reload();
 }
+// Display past search when click on the list search history
+function displayPastSearch(event) {
+    var liEl = event.target;
+    if (event.target.matches("li")) {
+        city = liEl.textContent.trim();
+        currentWeather(city);
+    }
+
+}
 // Buttons
 $("#search-button").on("click", displayWeather);
 $(window).on("load", loadlastCity);
 $("#clear-button").on("click", clearData);
+$(document).on("click", displayPastSearch);
