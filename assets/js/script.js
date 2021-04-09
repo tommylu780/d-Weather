@@ -33,10 +33,13 @@ function currentWeather(city) {
         $(currentTemp).html((tempC).toFixed(2) + "&#8451");
         // Display Humidity
         $(currentHumidity).html(response.main.humidity + "%");
-        // Display wind speed
+        // Display wind speed, infomation for wind convert to km/h: https://atoc.colorado.edu/~cassano/wx_calculator/formulas/windConversion.html
+        // The wind from reponse is default by m/s
         var windS = response.wind.speed;
         var wsKMH = (windS).toFixed(1);
         $(currentWindS).html(wsKMH * 3.6 + " Km/h");
+        // Display UV index.
+        UVIndex(response.coord.lon, response.coord.lat);
     });
 }
 // Display weather
@@ -46,6 +49,17 @@ function displayWeather(event) {
         city = searchCity.val().trim();
         currentWeather(city);
     }
+}
+
+// Function return UVIndex response
+function UVIndex(ln, lt) {
+    var queryUV = "https://api.openweathermap.org/data/2.5/uvi?appid=" + APIkey + "&lat=" + lt + "&lon=" + ln;
+    $.ajax({
+        url: queryUV,
+        method: "GET"
+    }).then(function(response) {
+        $(currentUV).html(response.value);
+    });
 }
 
 // Buttons
