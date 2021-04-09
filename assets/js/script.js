@@ -13,6 +13,16 @@ var sCity = [];
 // API key
 var APIkey = "e714c11c1fa1548077fe1386e9ba5477";
 
+// Check if searched city stored from storage
+function checking(c) {
+    for (var i = 0; i < sCity.length; i++) {
+        if (c.toUpperCase() === sCity[i]) {
+            return -1;
+        }
+    }
+    return 1;
+}
+
 // Current weather
 function currentWeather(city) {
     // query to get data from server side.
@@ -41,7 +51,22 @@ function currentWeather(city) {
         // Display UV index.
         UVIndex(response.coord.lon, response.coord.lat);
         forecast(response.id);
-
+        if (response.cod == 200) {
+            sCity = JSON.parse(localStorage.getItem("cityname"));
+            console.log(sCity);
+            if (sCity == null) {
+                sCity = [];
+                sCity.push(city.toUpperCase());
+                localStorage.setItem("cityname", JSON.stringify(sCity));
+                addToList(city);
+            } else {
+                if (checking(city) > 0) {
+                    sCity.push(city.toUpperCase());
+                    localStorage.setItem("cityname", JSON.stringify(sCity));
+                    addToList(city);
+                }
+            }
+        }
     });
 }
 // Display weather
@@ -87,6 +112,13 @@ function forecast(cityid) {
         }
 
     });
+}
+// Add to list function
+function addToList(c) {
+    var listEl = $("<li>" + c.toUpperCase() + "</li>");
+    $(listEl).attr("class", "list-group-item");
+    $(listEl).attr("data-value", c.toUpperCase());
+    $(".list-group").append(listEl);
 }
 
 // Buttons
