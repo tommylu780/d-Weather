@@ -120,6 +120,29 @@ function addToList(c) {
     $(listEl).attr("data-value", c.toUpperCase());
     $(".list-group").append(listEl);
 }
+// render function
+function loadlastCity() {
+    $("ul").empty();
+    var sCity = JSON.parse(localStorage.getItem("cityname"));
+    if (sCity !== null) {
+        sCity = JSON.parse(localStorage.getItem("cityname"));
+        for (i = 0; i < sCity.length; i++) {
+            addToList(sCity[i]);
+        }
+        city = sCity[i - 1];
+        currentWeather(city);
+    }
 
+}
+
+// Clear history function
+function clearData(event) {
+    event.preventDefault();
+    sCity = [];
+    localStorage.removeItem("cityname");
+    document.location.reload();
+}
 // Buttons
 $("#search-button").on("click", displayWeather);
+$(window).on("load", loadlastCity);
+$("#clear-button").on("click", clearData);
